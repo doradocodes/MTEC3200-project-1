@@ -39,9 +39,11 @@ Run these from `project-1/`:
 ## Code Style
 
 - Use TypeScript and React patterns appropriate to the Next.js App Router; keep server and client components intentional.
-- Use Tailwind utility classes for component styling and the existing global stylesheet for shared styles.
+- Use Tailwind classes. No separate CSS files. Prefer Tailwind's spacing utilities over arbitrary pixel values for spacing and sizing; reserve arbitrary values for custom typography or layout geometry that has no suitable utility.
+- Keep Tailwind classes simple so they're easy to debug and maintain.
 - Keep reusable UI in `components/`, shadcn UI primitives in `components/ui/`, and shared helpers in `lib/`.
 - Use clear, descriptive names and follow the existing project formatting and component patterns.
+- Put sections into their own component, so that code is easy to read from a top-level and put them inside `components/`.
 
 ## Rules
 
