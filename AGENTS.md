@@ -4,7 +4,7 @@ Read this file before every task.
 
 ## About This Project
 
-Leave-Time Assistant is a calendar-aware web app that helps users see their upcoming events, estimated commute times, and when to leave. The product requirements are in `../research/PRD.md`.
+Leave-Time Assistant is a calendar-aware web app that helps users see their upcoming events, estimated commute times, and when to leave. The product requirements are in `docs/research/PRD.md`.
 
 ## Product Scope
 
@@ -48,7 +48,7 @@ Run these from `project-1/`:
 ## Rules
 
 - Do not add dependencies without asking first.
-- Read `../research/PRD.md` before implementing product features.
+- Read `docs/research/PRD.md` before implementing product features.
 - Preserve working behavior and keep changes scoped to the requested task and PRD.
 - Never commit `.env.local`, API keys, or other secrets. Handle calendar authorization, location, and user preferences securely.
 - When implementing ESP32 support, include firmware/source code and upload instructions in `README.md`, as required by the PRD.
