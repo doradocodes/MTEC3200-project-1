@@ -1,6 +1,6 @@
 # Out the Door
 
-Out the Door is a calendar-aware web app concept for seeing today's plans, estimating commute time, and knowing when to leave. The current page uses sample schedule data; live calendar and routing integrations are not configured.
+Out the Door is a calendar-aware web app concept for seeing today's plans, estimating commute time, and knowing when to leave. The page shows a sample schedule until Google Calendar (read-only) is connected; routing integrations are not configured yet.
 
 ## Project Structure
 
@@ -23,6 +23,21 @@ Out the Door is a calendar-aware web app concept for seeing today's plans, estim
 ```
 
 The main page is composed in `app/page.tsx`. Its sections are in `components/`, while shared travel-mode data, types, and time-formatting helpers are in `lib/home-page.ts`.
+
+## Google Calendar Setup
+
+1. In Google Cloud Console, enable the Google Calendar API and create an OAuth client (Web application).
+2. Add an authorized redirect URI, e.g. `http://localhost:3000/api/google/callback`.
+3. Create `.env.local` (never commit it):
+
+```text
+GOOGLE_CLIENT_ID=...
+GOOGLE_CLIENT_SECRET=...
+GOOGLE_REDIRECT_URI=http://localhost:3000/api/google/callback
+SESSION_SECRET=<long random string, e.g. `openssl rand -base64 32`>
+```
+
+The app requests only the `calendar.readonly` scope. The refresh token is stored encrypted in an httpOnly cookie. Add your Google account as a test user while the OAuth consent screen is in testing mode.
 
 ## Getting Started
 

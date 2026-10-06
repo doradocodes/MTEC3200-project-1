@@ -6,19 +6,27 @@ import {
 } from "@/lib/home-page";
 
 type NextEventCardProps = {
+  title: string;
+  location: string | null;
   eventStartsAt: Date | null;
-  leaveAt: Date | null;
-  countdown: number | null;
-  travelMode: TravelModeOption;
+  // Null when there is no commute estimate (no destination, or not yet available)
+  commute: {
+    leaveAt: Date | null;
+    countdown: number | null;
+    travelMode: TravelModeOption;
+  } | null;
 };
 
 export function NextEventCard({
+  title,
+  location,
   eventStartsAt,
-  leaveAt,
-  countdown,
-  travelMode,
+  commute,
 }: NextEventCardProps) {
-  const ModeIcon = travelMode.Icon;
+  const leaveAt = commute?.leaveAt ?? null;
+  const countdown = commute?.countdown ?? null;
+  const travelMode = commute?.travelMode;
+  const ModeIcon = travelMode?.Icon;
 
   return (
     <section
@@ -41,13 +49,16 @@ export function NextEventCard({
           className="m-0 text-[clamp(24px,3vw,31px)] font-medium leading-[1.15] tracking-[-0.045em] text-[#fbfcf8]"
           id="next-event-heading"
         >
-          Coffee with Lena
+          {title}
         </h2>
-        <p className="mt-2 flex items-center gap-2 text-[13px] text-[#c3d5cc]">
-          <MapPin size={16} className="text-[#f1a27e]" aria-hidden="true" />
-          Morrow Coffee, 82 Wythe Ave
-        </p>
+        {location && (
+          <p className="mt-2 flex items-center gap-2 text-[13px] text-[#c3d5cc]">
+            <MapPin size={16} className="text-[#f1a27e]" aria-hidden="true" />
+            {location}
+          </p>
+        )}
 
+        {commute && (
         <div className="mt-7 flex items-end gap-5 max-[430px]:mt-6 max-[430px]:flex-wrap max-[430px]:gap-3">
           <div>
             <span className="mb-0.5 block text-xs text-[#bdd1c7]">Leave by</span>
@@ -67,8 +78,10 @@ export function NextEventCard({
                 : "Time to head out"}
           </span>
         </div>
+        )}
       </div>
 
+      {commute && travelMode && ModeIcon && (
       <div
         className="relative z-[1] flex h-40 w-full max-w-xs justify-self-center flex-col items-start justify-between py-0.5 text-[#d9e8de] max-[760px]:h-26 max-[760px]:max-w-none max-[760px]:flex-row max-[760px]:items-center max-[760px]:py-0"
         aria-hidden="true"
@@ -87,9 +100,10 @@ export function NextEventCard({
         </div>
         <div className="flex items-center gap-3 text-xs text-[#f1a27e] max-[760px]:order-last">
           <MapPin size={19} strokeWidth={1.8} />
-          <span className="text-[#d9e8de]">Morrow Coffee</span>
+          <span className="text-[#d9e8de]">{location}</span>
         </div>
       </div>
+      )}
 
       <div className="flex items-center gap-2 text-[11px] text-[#b8ccc1] max-[760px]:right-6 max-[760px]:bottom-6 max-[430px]:right-5 max-[430px]:bottom-5.5">
         <CalendarDays size={16} className="text-[#f0c674]" aria-hidden="true" />

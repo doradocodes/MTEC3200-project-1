@@ -52,6 +52,7 @@ Run these from `project-1/`:
 - Preserve working behavior and keep changes scoped to the requested task and PRD.
 - Never commit `.env.local`, API keys, or other secrets. Handle calendar authorization, location, and user preferences securely.
 - When implementing ESP32 support, include firmware/source code and upload instructions in `README.md`, as required by the PRD.
+- Update `PROGRESS.md` after each task.
 
 ## How to Talk to Me
 

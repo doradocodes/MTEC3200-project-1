@@ -24,7 +24,7 @@ export function UpcomingAgenda({ events }: { events: AgendaEvent[] }) {
         {events.map((event) => (
           <li
             className="grid min-h-18 grid-cols-[calc(var(--spacing)_*_17)_calc(var(--spacing)_*_3)_minmax(0,1fr)_auto] items-center gap-3 border-t border-[#dfe7e2] max-[430px]:grid-cols-[calc(var(--spacing)_*_15)_calc(var(--spacing)_*_2.5)_minmax(0,1fr)] max-[430px]:gap-2"
-            key={event.title}
+            key={`${event.title}-${event.time.getTime()}`}
           >
             <time className="text-xs tabular-nums text-[#6e817a]">
               {formatTime(event.time)}
